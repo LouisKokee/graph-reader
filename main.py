@@ -6,7 +6,7 @@ import numpy as np
 from functions import *
 
 
-# user input
+# --- USER INPUT ---
 saveData = 1
 printData = 1
 image_path = 'source_figures/xaPre_height_mvw.png'
@@ -15,10 +15,12 @@ verAxis_base = 500
 horAxis_base = 0.12
 
 
-
+# --- OPEN GUI AND SET POINTS ---
 # read coordinates (user input)
 IX, IY = set_graph_coordinates(image_path)
 
+
+# --- TRANSFORM DATA FROM LIST OF PIXELS TO DATA IN GRAPH UNITS ---
 # amount of pixels base takes up
 verAxis_base_pixels = -(IY[1]-IY[0])
 horAxis_base_pixels = IX[4]-IX[3]
@@ -32,7 +34,7 @@ y = pixList_to_graphData(verAxis_pixList, verAxis_base, verAxis_base_pixels)
 x = pixList_to_graphData(horAxis_pixList, horAxis_base, horAxis_base_pixels)
 
 
-# write data to csv file
+# --- SAVE DATA ---
 if saveData: np.savez(fr'output_data/{profile_name}',y=y,x=x)
 if printData: print(x,y)
 
